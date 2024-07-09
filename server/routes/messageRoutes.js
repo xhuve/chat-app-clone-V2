@@ -1,8 +1,10 @@
 import express from 'express'
-import { sendMessage } from '../controllers/messageControllers.js';
+import { getMessages, sendMessage } from '../controllers/messageController.js';
 import { protectRoute } from './protectRoute.js';
 
 const router = express.Router()
+
+router.get("/:id", protectRoute, getMessages)
 
 router.post('/send/:id', protectRoute, sendMessage)
 
