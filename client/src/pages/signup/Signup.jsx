@@ -1,5 +1,5 @@
 import React from 'react'
-import { GenderCheckBox } from './GenderCheckBox'
+import GenderCheckBox from './GenderCheckBox'
 
 function Login() {
   return (
