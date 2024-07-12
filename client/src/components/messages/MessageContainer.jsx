@@ -4,7 +4,7 @@ import MessageInput from './MessageInput.jsx'
 
 const NoChatSelected = () => {
   return (
-    <div className='flex items-center justify-center h-full w-full'>
+    <div className='flex items-center justify-center h-full w-full flex-col'>
       <div className='text-xl font-bold text-white'>
           Welcome
       </div>
