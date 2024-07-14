@@ -1,5 +1,6 @@
 import express from "express"
 import dotenv from 'dotenv'
+import CORS from 'cors'
 import cookieParser from "cookie-parser"
 
 import authRoutes from "./routes/authRoutes.js"
@@ -10,6 +11,7 @@ import connectToMongoDb from "./database/connectToMongoDB.js"
 dotenv.config()
 const app = express()
 
+app.use(CORS())
 app.use(express.json())
 app.use(cookieParser())
 

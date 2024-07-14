@@ -1,28 +1,30 @@
 import { useState } from 'react'
+import axios from 'axios'
+import toast from 'react-hot-toast'
 
-const useSignup = async () => {
+const useSignup = () => {
     const [loading, setLoading] = useState(false)
 
-    const signup = async ({ data }) => {
+    const signup = async (data) => {
         const success = handleInputErrors(data)
         if(!success) return;
-    }
-
-    setLoading(true)
-    try {
-        const res = await fetch("http://localhost:5000/api/auth/signup", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(data)
+        
+        setLoading(true)
+        const {fullname, username, password, confirmPassword, gender} = data
+        axios.post("http://localhost:3001/api/auth/signup", {fullname, username, password, confirmPassword, gender})
+        .then((res) => {
+            console.log("🚀 ~ signup ~ body:", res)
+        })
+        .catch((error) => {
+            console.log(error)
+            toast.error(error.message)
+        })
+        .finally(() => {
+            setLoading(false)
         })
 
-        const data = await res.json()
-    } catch (error) {
-        toast.error(error.message)
-    } finally {
-        setLoading(false)
     }
-    return { loading, signup }
+    return [ loading, signup ]
 }
 
 export default useSignup

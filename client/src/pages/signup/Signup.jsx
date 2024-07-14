@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
 import GenderCheckBox from './GenderCheckBox'
 import { Link } from 'react-router-dom'
-import useSignup from '../../components/hooks/useSignup'
+import useSignup from '../../components/hooks/useSignup.js'
+import { useEffect } from 'react'
 
 function Signup() {
-
     const [formData, setFormData] = useState({})
+    const [ loading, signup ] = useSignup()
 
     const onFormChange = (event) => {
         setFormData(prevData => ({...prevData, [event.target.name]: event.target.value}))
@@ -15,8 +16,7 @@ function Signup() {
         e.preventDefault()
         await signup(formData)
     }
-
-    const {loading, signup} = useSignup()
+    
 
     return (
         <div className='flex flex-col items-center justify-center min-w-96 mx-auto '>
@@ -45,6 +45,13 @@ function Signup() {
                             <span className='text-base label-text text-black'>Password</span>
                         </label>
                         <input onChange={onFormChange} type="password" name='password' placeholder='Enter your password' className='w-full input input-bordered h-10' />
+                    </div>
+
+                    <div>
+                        <label className='label'>
+                            <span className='text-base label-text text-black'>Confirm password</span>
+                        </label>
+                        <input onChange={onFormChange} type="password" name='confirmPassword' placeholder='Confirm your password' className='w-full input input-bordered h-10' />
                     </div>
 
                     
