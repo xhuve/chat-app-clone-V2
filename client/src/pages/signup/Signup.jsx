@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import GenderCheckBox from './GenderCheckBox'
 import { Link } from 'react-router-dom'
 import useSignup from '../../components/hooks/useSignup.js'
-import { useEffect } from 'react'
 
 function Signup() {
     const [formData, setFormData] = useState({})

@@ -1,9 +1,11 @@
 import { useState } from 'react'
 import axios from 'axios'
 import toast from 'react-hot-toast'
+import { useAuthContext } from '../../context/AuthContext'
 
 const useSignup = () => {
     const [loading, setLoading] = useState(false)
+    const { setAuthUser } = useAuthContext()
 
     const signup = async (data) => {
         const success = handleInputErrors(data)
@@ -14,10 +16,12 @@ const useSignup = () => {
         axios.post("http://localhost:3001/api/auth/signup", {fullname, username, password, confirmPassword, gender})
         .then((res) => {
             console.log("🚀 ~ signup ~ body:", res)
+            localStorage.setItem("chat-user", JSON.stringify(res.data))
+            setAuthUser(res.data)
         })
         .catch((error) => {
             console.log(error)
-            toast.error(error.message)
+            toast.error(error.response.data)
         })
         .finally(() => {
             setLoading(false)
