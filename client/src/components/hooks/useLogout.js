@@ -5,17 +5,18 @@ import { useAuthContext } from '../../context/AuthContext'
 
 const useLogout = () => {
     const [loading, setLoading] = useState(false)
-    const {setAuthUser} = useAuthContext
+    const {setAuthUser} = useAuthContext()
 
     const logout = async () => {
         setLoading(true)
-        axios.post("http://localhost:3001/api/auth/logout",)
+        axios.post("http://localhost:3001/api/auth/logout")
         .then((res) => {
             localStorage.removeItem("chat-user")
             setAuthUser(null)
         })
         .catch((err) => {
-            toast.error(err.response.data)
+            console.log("🚀 ~ logout ~ err:", err)
+            toast.error(err.response)
         })       
         .finally(() => {
             setLoading(false)

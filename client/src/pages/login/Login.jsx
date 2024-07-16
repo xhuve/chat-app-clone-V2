@@ -1,17 +1,20 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
+import useLogin from '../../components/hooks/useLogin'
 
 function Login() {
-
     const [formData, setFormData] = useState({})
+    const {loading, login} = useLogin()
 
     const onFormChange = (event) => {
         setFormData(prevData => ({...prevData, [event.target.name]: event.target.value}))
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
-        console.log(formData)
+
+        console.log("🚀 ~ handleSubmit ~ formData:", formData)
+        await login(formData)
     }
 
 
@@ -27,20 +30,25 @@ function Login() {
                         <label className='label p-2'>
                             <span className='text-base label-text text-black'>Username</span>
                         </label>
-                        <input onChange={onFormChange} type="text" placeholder="Enter your username" className='w-full input input-bordered h-10 '/>
+                        <input onChange={onFormChange} type="text" name="username" placeholder="Enter your username" className='w-full input input-bordered h-10 '/>
                     </div>
 
                     <div>
                         <label className='label'>
                             <span className='text-base label-text text-black'>Password</span>
                         </label>
-                        <input onChange={onFormChange} type="password" placeholder='Enter your password' className='w-full input input-bordered h-10' />
+                        <input onChange={onFormChange} type="password" name='password' placeholder='Enter your password' className='w-full input input-bordered h-10' />
                     </div>
                     <Link to="/signup" className='text-sm hover:underline'>
                         Don't have an account?
                     </Link>
                     <div>
-                        <button className='btn btn-block btn-sm mt-2'>Login</button>
+                        <button className='btn btn-block btn-sm mt-2'>
+                            {loading ? 
+                            <span className='loading loading-spinner'></span>
+                            : "Login"
+                            }
+                        </button>
                     </div>
                 </form>
             </div>
