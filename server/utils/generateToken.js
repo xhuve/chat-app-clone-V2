@@ -7,10 +7,12 @@ const generateToken = (userId, res) => {
     })
 
     res.cookie("jwt", token, { 
-        maxAge: 15 * 24 * 60 * 1000, // MS
+        maxAge: 15 * 24 * 60 * 1000, // Milisecond
         httpOnly: true,
-        sameSite: "strict"
+        sameSite: "none",
+        secure: "development"
     })
+    
 }
 
 export default generateToken

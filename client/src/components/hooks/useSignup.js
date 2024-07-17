@@ -21,7 +21,7 @@ const useSignup = () => {
         })
         .catch((error) => {
             console.log(error)
-            toast.error(error.response.data)
+            toast.error(error.response)
         })
         .finally(() => {
             setLoading(false)

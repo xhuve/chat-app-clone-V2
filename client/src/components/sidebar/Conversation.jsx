@@ -1,22 +1,24 @@
 import React from 'react'
 
-function Conversation() {
-  return (
-    <div className='flex gap-2 items-center hover:bg-cyan-400 py-2 px-2'>
-      <div className="avatar online">
-        <div className="w-12 rounded-full">
-          <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
-        </div>
-      </div>
+function Conversation({ convo, lastIdx }) {
 
-      <div className='flex flex-col flex-1'>
-        <div className='flex gap-3 justify-between'>
-          <p className='font-bold'>John Doe</p>
-          <span className='text-xl'>B</span>
+    return (
+      <>
+        <div className='flex gap-2 items-center hover:bg-cyan-400 py-2 px-2 cursor-pointer'>
+          <div className="avatar online">
+            <div className="w-12 rounded-full">
+              <img src={convo.profilePic} />
+            </div>
+          </div>
+
+          <div className='flex flex-col flex-1'>
+              <p className='font-bold'>{convo.fullname}</p>
+          </div>
         </div>
-      </div>
-    </div>
-  )
+
+        {!lastIdx ? <div className='divider my-0 py-0 h-1' /> : null}
+      </>
+    )
 }
 
 export default Conversation

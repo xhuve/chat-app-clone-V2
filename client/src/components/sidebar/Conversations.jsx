@@ -1,14 +1,20 @@
 import React from 'react'
 import Conversation from './Conversation.jsx'
+import useGetConversations from '../hooks/useGetConversations.js'
 
 function Conversations() {
+    const { loading, conversations } = useGetConversations()
+
     return (
-        <>
-            <Conversation />
-            <Conversation />
-            <Conversation />
-            <Conversation />
-        </>
+        <div className='py-2 flex flex-col overflow-auto'>
+            {conversations.map((convo, idx) =>
+              <Conversation
+                convo={convo}
+                lastIdx={idx === conversations.length - 1}
+              />
+            )}
+            {loading ? <span className='loading loading-spinner mx-auto'></span> : null}
+        </div>
       )
 }
 
