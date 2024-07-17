@@ -1,10 +1,15 @@
 import React from 'react'
+import useConversation from "../../zustand/useConversation.js"
 
 function Conversation({ convo, lastIdx }) {
+    const {selectedConvo, setSelectedConvo} = useConversation()
 
+    const isSelected = selectedConvo?._id == convo._id
     return (
       <>
-        <div className='flex gap-2 items-center hover:bg-cyan-400 py-2 px-2 cursor-pointer'>
+        <div onClick={() => setSelectedConvo(convo)} 
+        className={
+          `flex gap-2 items-center ${isSelected ? "bg-cyan-400" : null} hover:bg-cyan-400 py-2 px-2 cursor-pointer`}>
           <div className="avatar online">
             <div className="w-12 rounded-full">
               <img src={convo.profilePic} />

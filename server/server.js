@@ -20,7 +20,7 @@ app.use(cookieParser())
 
 app.use("/api/auth", authRoutes)
 app.use("/api/message", messageRoutes)
-app.use("/api/users", userRoutes)
+app.use("/api/user", userRoutes)
 
 const PORT = process.env.PORT || 3000
 app.listen(PORT, () => {

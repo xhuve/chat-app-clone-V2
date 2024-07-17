@@ -9,7 +9,7 @@ const useGetConversations = () => {
     useEffect(() => {
         const getConversations = async () => {
             setLoading(true)
-            axios.get("http://localhost:3001/api/users/", { withCredentials: true })
+            axios.get("http://localhost:3001/api/user/", { withCredentials: true })
             .then((res) => {
                 setConversations(res.data)
             })

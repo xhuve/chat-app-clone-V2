@@ -4,6 +4,7 @@ import Message from "../models/messageModel.js"
 export const sendMessage = async (req, res) => {
     try {
         const { message } = req.body
+        console.log("🚀 ~ sendMessage ~ message:", message)
         const recieverId = req.params.id
         const senderId = req.user.id
 
