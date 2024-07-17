@@ -6,12 +6,12 @@ export const signup = async (req, res) => {
     try {
         const {fullname, username, password, confirmPassword, gender} = req.body
         if (password !== confirmPassword)
-            return res.status(400).json({error: "Password do not match"})
+            return res.status(400).send({error: "Password do not match"})
  
         const user = await User.findOne({username})
 
         if (user)
-            return res.status(400).json({error: "Username already exists"})
+            return res.status(400).send({error: "Username already exists"})
 
         const salt = await bcrypt.genSalt(10)
         const hashedPassword = await bcrypt.hash(password, salt)
@@ -31,18 +31,18 @@ export const signup = async (req, res) => {
             generateToken(newUser._id, res)
             await newUser.save()
             
-            res.status(201).json({
+            res.status(201).send({
                 _id: newUser._id,
                 fullName: newUser.fullname,
                 username: newUser.username,
                 profilePic: newUser.profilePic
             })
         } else {
-            res.status(400).json({error: "Invalid user data"})
+            res.status(400).send({error: "Invalid user data"})
         }
 
     } catch (error) {
-        res.status(400).json({error: "Internal Server Error" + error})
+        res.status(400).send({error: "Internal Server Error" + error})
     }
 }
 
@@ -53,9 +53,11 @@ export const login = async (req, res) => {
         const isPasswordCorrect = await bcrypt.compare(password, user?.password || "")
 
         if (!user || !isPasswordCorrect)
-            return res.status(400).json({error: "Invalid credentials"})
+            return res.status(400).send({error: "Invalid credentials"})
 
         generateToken(user._id, res)
+
+        console.log(req.cookies)
 
         res.status(200).send({
             _id: user._id,
@@ -65,7 +67,7 @@ export const login = async (req, res) => {
         })
 
     } catch (error) {
-        res.status(400).json({error: "Internal Server Error" + error})
+        res.status(400).send({error: "Internal Server Error" + error})
     }
 }
 

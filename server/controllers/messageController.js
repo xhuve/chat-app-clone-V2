@@ -4,7 +4,6 @@ import Message from "../models/messageModel.js"
 export const sendMessage = async (req, res) => {
     try {
         const { message } = req.body
-        console.log("🚀 ~ sendMessage ~ message:", message)
         const recieverId = req.params.id
         const senderId = req.user.id
 
@@ -30,15 +29,15 @@ export const sendMessage = async (req, res) => {
         
         await Promise.all[convo.save(), newMessage.save()]
 
-        res.status(201).json(newMessage)
+        res.status(201).send(newMessage)
     } catch (error) {
         console.log("Error in sendMessage controller:", error.message)
-        res.status(500).json({ error: "Internal server error" + error })
+        res.status(500).send({ error: "Internal server error" + error })
     }
 }
 
 export const getMessages = async (req, res) => {
-    try {
+    try { 
         const userToChat = req.params.id
         const senderId = req.user._id
 
@@ -47,11 +46,11 @@ export const getMessages = async (req, res) => {
         }).populate("messages")
 
         if (!convo)
-            res.status(200).json([])
+            return res.status(200).send([])
 
-        res.status(200).json(convo.messages)        
+        return res.status(200).send(convo.messages)        
     } catch (error) {
-        console.log("Error in sendMessage controller:", error.message)
-        res.status(500).json({ error: "Internal server error" + error })
+        console.log("Error in getMessage controller:", error.message)
+        res.status(500).send({ error: "Internal server error" + error })
     }
 }

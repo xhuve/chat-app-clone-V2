@@ -10,12 +10,12 @@ const useSendMessage = () => {
 
   const sendMessage = async (message) => {
     setLoading(true)
-    axios.post(`http://localhost:3001/api/message/send/${selectedConvo._id}`, { message }, {withCredentials: true})
+    axios.post(`http://localhost:3001/api/message/send/${selectedConvo?._id}`, { message }, {withCredentials: true})
     .then((res) => {
       setMessages([...messages, res.data])
     })
     .catch((err) => {
-      toast.error(err.response)
+      toast.error(err.response.data.error)
       return err
     })
     .finally(() => {

@@ -15,8 +15,7 @@ const useLogout = () => {
             setAuthUser(null)
         })
         .catch((err) => {
-            console.log("🚀 ~ logout ~ err:", err)
-            toast.error(err.response)
+            toast.error(err.response.data.error)
         })       
         .finally(() => {
             setLoading(false)

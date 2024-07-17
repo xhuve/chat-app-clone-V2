@@ -13,7 +13,7 @@ const useSignup = () => {
         
         setLoading(true)
         const {fullname, username, password, confirmPassword, gender} = data
-        axios.post("http://localhost:3001/api/auth/signup", {fullname, username, password, confirmPassword, gender})
+        axios.post("http://localhost:3001/api/auth/signup", {fullname, username, password, confirmPassword, gender}, { withCredentials: true })
         .then((res) => {
             console.log("🚀 ~ signup ~ body:", res)
             localStorage.setItem("chat-user", JSON.stringify(res.data))
@@ -21,7 +21,7 @@ const useSignup = () => {
         })
         .catch((error) => {
             console.log(error)
-            toast.error(error.response)
+            toast.error(err.response.data.error)
         })
         .finally(() => {
             setLoading(false)
