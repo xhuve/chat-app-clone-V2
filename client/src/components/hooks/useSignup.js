@@ -1,54 +1,63 @@
-import { useState } from 'react'
-import axios from 'axios'
-import toast from 'react-hot-toast'
-import { useAuthContext } from '../../context/AuthContext'
+import { useState } from "react";
+import axios from "axios";
+import toast from "react-hot-toast";
+import { useAuthContext } from "../../context/AuthContext";
 
 const useSignup = () => {
-    const [loading, setLoading] = useState(false)
-    const { setAuthUser } = useAuthContext()
+  const [loading, setLoading] = useState(false);
+  const { setAuthUser } = useAuthContext();
 
-    const signup = async (data) => {
-        const success = handleInputErrors(data)
-        if(!success) return;
-        
-        setLoading(true)
-        const {fullname, username, password, confirmPassword, gender} = data
-        axios.post("http://localhost:3001/api/auth/signup", {fullname, username, password, confirmPassword, gender}, { withCredentials: true })
-        .then((res) => {
-            console.log("🚀 ~ signup ~ body:", res)
-            localStorage.setItem("chat-user", JSON.stringify(res.data))
-            setAuthUser(res.data)
-        })
-        .catch((error) => {
-            console.log(error)
-            toast.error(err.response.data.error)
-        })
-        .finally(() => {
-            setLoading(false)
-        })
+  const signup = async (data) => {
+    const success = handleInputErrors(data);
+    if (!success) return;
 
-    }
-    return [ loading, signup ]
-}
+    setLoading(true);
+    const { fullname, username, password, confirmPassword, gender } = data;
+    axios
+      .post(
+        "http://localhost:3001/api/auth/signup",
+        { fullname, username, password, confirmPassword, gender },
+        { withCredentials: true }
+      )
+      .then((res) => {
+        console.log("🚀 ~ signup ~ body:", res);
+        localStorage.setItem("chat-user", JSON.stringify(res.data));
+        setAuthUser(res.data);
+      })
+      .catch((error) => {
+        console.log(error);
+        toast.error(err.response.data.error);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  };
+  return [loading, signup];
+};
 
-export default useSignup
-
+export default useSignup;
 
 const handleInputErrors = (data) => {
-    if(!data.fullname || !data.username || !data.password || !data.confirmPassword || !data.gender) {
-        toast.error('Please fill in all fields')
-        return false;
-    }
+  if (
+    !data.fullname ||
+    !data.username ||
+    !data.password ||
+    !data.confirmPassword ||
+    !data.gender
+  ) {
+    toast.error("Please fill in all fields");
+    return false;
+  }
 
-    if(data.password !== data.confirmPassword) {
-        toast.error('Passwords do not match')
-        return false;
-    }
+  if (data.password !== data.confirmPassword) {
+    toast.error("Passwords do not match");
+    return false;
+  }
 
-    if(data.password.length < 6) {
-        toast.error('Password must be at least 6 characters')
-        return false;    
-    }
+  if (data.password.length < 6) {
+    toast.error("Password must be at least 6 characters");
+    return false;
+  }
 
-    return true
-}
+  return true;
+};
