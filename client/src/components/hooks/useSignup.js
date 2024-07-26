@@ -15,7 +15,7 @@ const useSignup = () => {
     const { fullname, username, password, confirmPassword, gender } = data;
     axios
       .post(
-        "http://localhost:3001/api/auth/signup",
+        "https://chat-app-prod-r6uf.onrender.com/",
         { fullname, username, password, confirmPassword, gender },
         { withCredentials: true }
       )
@@ -26,7 +26,7 @@ const useSignup = () => {
       })
       .catch((error) => {
         console.log(error);
-        toast.error(err.response.data.error);
+        toast.error(error.response.data.error);
       })
       .finally(() => {
         setLoading(false);
