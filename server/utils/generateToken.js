@@ -10,9 +10,8 @@ const generateToken = (userId, res) => {
         maxAge: 15 * 24 * 60 * 1000, // Milisecond
         httpOnly: true,
         sameSite: "none",
-        secure: "development"
+        secure: process.env.NODE_ENV !== "development"
     })
-    
 }
 
 export default generateToken
