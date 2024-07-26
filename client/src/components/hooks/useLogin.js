@@ -15,7 +15,7 @@ const useLogin = () => {
     const currentUrl = new URL(window.location)
     axios
       .post(
-        currentUrl + "/api/auth/login",
+        currentUrl.origin + "/api/auth/login",
         { username, password },
         { withCredentials: true }
       )
