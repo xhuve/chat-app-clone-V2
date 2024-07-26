@@ -14,8 +14,8 @@ function Conversation({ convo, lastIdx }) {
       <div
         onClick={() => setSelectedConvo(convo)}
         className={`flex gap-2 items-center ${
-          isSelected ? "bg-cyan-400" : null
-        } hover:bg-cyan-400 py-2 px-2 cursor-pointer`}
+          isSelected ? "bg-blue-400" : null
+        } hover:bg-blue-400 transition-colors py-2 px-2 cursor-pointer`}
       >
         <div className={`avatar ${isOnline ? "online" : null}`}>
           <div className="w-12 rounded-full">

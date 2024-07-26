@@ -27,7 +27,7 @@ function SearchInput() {
 
   return (
     <>
-      <form onSubmit={handleSubmit} className="flex items-center gap-1">
+      <form onSubmit={handleSubmit} className="px-2 flex items-center gap-1">
         <input
           value={search}
           onChange={(e) => setSearch(e.target.value)}

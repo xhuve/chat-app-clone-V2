@@ -15,7 +15,7 @@ const MessageContainer = () => {
     <div className="w-full flex flex-col">
       {selectedConvo ? (
         <>
-          <div className="bg-slate-500 px-4 mx-2 py-3 mb-2 rounded-lg">
+          <div className="bg-blue-400 px-4 mx-2 py-3 mb-2 rounded-lg">
             <span className="label-text">To:</span>{" "}
             <span className="text-gray-900 font-bold">
               {selectedConvo.fullname}

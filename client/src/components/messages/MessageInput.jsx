@@ -24,7 +24,7 @@ const MessageInput = () => {
             value={message}
             type="text"
             placeholder="Send a message..."
-            className="py-2 px-2 border rounded-lg text-sm block w-full bg-gray-700 border-gray-600 text-white"
+            className="py-2 px-2 border rounded-lg text-sm block w-full bg-white border-gray-600 text-black"
           />
           <button
             type="submit"
@@ -33,7 +33,7 @@ const MessageInput = () => {
             {loading ? (
               <span className="ml-2 loading loading-spinner"></span>
             ) : (
-              <BsSend className="ml-2" color="white" />
+              <BsSend className="ml-2 size-5" color="black" />
             )}
           </button>
         </div>
