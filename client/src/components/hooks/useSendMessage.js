@@ -1,7 +1,7 @@
-import axios from "axios";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import useConversation from "../../zustand/useConversation.js";
+import axiosClient from "../utils/axiosClient.js";
 
 const useSendMessage = () => {
   const [loading, setLoading] = useState(false);
@@ -9,10 +9,9 @@ const useSendMessage = () => {
 
   const sendMessage = async (message) => {
     setLoading(true);
-    const currentUrl = new URL(window.location)
-    axios
+    axiosClient
       .post(
-        currentUrl.origin + `/api/message/send/${selectedConvo?._id}`,
+        `/api/message/send/${selectedConvo?._id}`,
         { message },
         { withCredentials: true }
       )

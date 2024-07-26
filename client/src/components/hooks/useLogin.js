@@ -1,7 +1,8 @@
-import React, { useState } from "react";
-import axios from "axios";
+import { useState } from "react";
 import toast from "react-hot-toast";
 import { useAuthContext } from "../../context/AuthContext";
+import axiosClient from "../utils/axiosClient";
+
 
 const useLogin = () => {
   const [loading, setLoading] = useState();
@@ -12,10 +13,9 @@ const useLogin = () => {
       toast.error("Please enter your username and password");
 
     setLoading(true);
-    const currentUrl = new URL(window.location)
-    axios
+    axiosClient
       .post(
-        currentUrl.origin + "/api/auth/login",
+        "/api/auth/login",
         { username, password },
         { withCredentials: true }
       )

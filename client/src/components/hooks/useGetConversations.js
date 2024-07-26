@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
 import toast from "react-hot-toast";
 import useLogout from "../hooks/useLogout.js";
+import axiosClient from "../utils/axiosClient.js";
 
 const useGetConversations = () => {
   const [loading, setLoading] = useState(false);
@@ -11,9 +11,8 @@ const useGetConversations = () => {
   useEffect(() => {
     const getConversations = async () => {
       setLoading(true);
-      const currentUrl = new URL(window.location)
-      axios
-        .get(currentUrl.origin + "/api/user/", { withCredentials: true })
+      axiosClient
+        .get("/api/user/", { withCredentials: true })
         .then((res) => {
           console.log("🚀 ~ .then ~ res:", res);
           setConversations(res.data);

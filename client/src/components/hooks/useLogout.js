@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import axios from "axios";
+import { useState } from "react";
 import toast from "react-hot-toast";
 import { useAuthContext } from "../../context/AuthContext";
+import axiosClient from "../utils/axiosClient";
 
 const useLogout = () => {
   const [loading, setLoading] = useState(false);
@@ -9,9 +9,8 @@ const useLogout = () => {
 
   const logout = async () => {
     setLoading(true);
-    const currentUrl = new URL(window.location)
-    axios
-      .post(currentUrl.origin + "/api/auth/logout")
+    axiosClient
+      .post("/api/auth/logout")
       .then((res) => {
         localStorage.removeItem("chat-user");
         setAuthUser(null);

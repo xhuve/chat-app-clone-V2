@@ -19,9 +19,9 @@ const Messages = () => {
     <div className="px-4 flex-1 overflow-auto">
       {!loading &&
         messages.length > 0 &&
-        messages.map((msg) => (
-          <div ref={lastMessage}>
-            <Message key={msg._id} message={msg} />
+        messages.map((msg, idx) => (
+          <div key={idx} ref={lastMessage}>
+            <Message message={msg} />
           </div>
         ))}
       {loading && <p className="text-center">Loading messages...</p>}

@@ -9,6 +9,7 @@ function Conversations() {
     <div className="py-2 flex flex-col overflow-auto">
       {conversations.map((convo, idx) => (
         <Conversation
+          key={idx}
           convo={convo}
           lastIdx={idx === conversations.length - 1}
         />

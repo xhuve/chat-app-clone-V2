@@ -33,7 +33,7 @@ function SearchInput() {
           onChange={(e) => setSearch(e.target.value)}
           type="text"
           placeholder="Search..."
-          className="input input-bordered rounded-full"
+          className="input input-bordered rounded-full w-full md:w-auto"
         />
         <button type="submit" className="btn btn-circle">
           <IoMdSearch className="w-5 h-5" />

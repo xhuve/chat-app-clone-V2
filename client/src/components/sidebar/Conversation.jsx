@@ -4,7 +4,6 @@ import { useSocketContext } from "../../context/SocketContext.jsx";
 
 function Conversation({ convo, lastIdx }) {
   const { selectedConvo, setSelectedConvo } = useConversation();
-
   const isSelected = selectedConvo?._id == convo._id;
   const { onlineUsers } = useSocketContext();
   const isOnline = onlineUsers.includes(convo._id);
