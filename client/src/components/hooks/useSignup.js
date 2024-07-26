@@ -15,7 +15,7 @@ const useSignup = () => {
     const { fullname, username, password, confirmPassword, gender } = data;
     axios
       .post(
-        "https://chat-app-prod-r6uf.onrender.com/",
+        window.location.href + '/signup',
         { fullname, username, password, confirmPassword, gender },
         { withCredentials: true }
       )
