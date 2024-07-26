@@ -12,10 +12,11 @@ const useSignup = () => {
     if (!success) return;
 
     setLoading(true);
+    const currentUrl = new URL(window.location)
     const { fullname, username, password, confirmPassword, gender } = data;
     axios
       .post(
-        window.location.hostname + 'api/auth/signup',
+        currentUrl.origin + "api/auth/signup/",
         { fullname, username, password, confirmPassword, gender },
         { withCredentials: true }
       )
