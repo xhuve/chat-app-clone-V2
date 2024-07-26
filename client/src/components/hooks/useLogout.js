@@ -9,8 +9,9 @@ const useLogout = () => {
 
   const logout = async () => {
     setLoading(true);
+    const currentUrl = new URL(window.location)
     axios
-      .post("http://localhost:3001/api/auth/logout")
+      .post(currentUrl.origin + "/api/auth/logout")
       .then((res) => {
         localStorage.removeItem("chat-user");
         setAuthUser(null);

@@ -11,8 +11,9 @@ const useGetConversations = () => {
   useEffect(() => {
     const getConversations = async () => {
       setLoading(true);
+      const currentUrl = new URL(window.location)
       axios
-        .get("http://localhost:3001/api/user/", { withCredentials: true })
+        .get(currentUrl.origin + "/api/user/", { withCredentials: true })
         .then((res) => {
           console.log("🚀 ~ .then ~ res:", res);
           setConversations(res.data);

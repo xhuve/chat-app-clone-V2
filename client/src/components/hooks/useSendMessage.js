@@ -9,9 +9,10 @@ const useSendMessage = () => {
 
   const sendMessage = async (message) => {
     setLoading(true);
+    const currentUrl = new URL(window.location)
     axios
       .post(
-        `http://localhost:3001/api/message/send/${selectedConvo?._id}`,
+        currentUrl.origin + `/api/message/send/${selectedConvo?._id}`,
         { message },
         { withCredentials: true }
       )

@@ -11,8 +11,9 @@ const useGetMessages = () => {
   useEffect(() => {
     const getMessages = async () => {
       setLoading(true);
+      const currentUrl = new URL(window.location)
       axios
-        .get(`http://localhost:3001/api/message/${selectedConvo?._id}`, {
+        .get(currentUrl.origin + `/api/message/${selectedConvo?._id}`, {
           withCredentials: true,
         })
         .then((res) => {

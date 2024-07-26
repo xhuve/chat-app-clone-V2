@@ -12,9 +12,10 @@ const useLogin = () => {
       toast.error("Please enter your username and password");
 
     setLoading(true);
+    const currentUrl = new URL(window.location)
     axios
       .post(
-        "http://localhost:3001/api/auth/login",
+        currentUrl + "/api/auth/login",
         { username, password },
         { withCredentials: true }
       )
