@@ -1,7 +1,6 @@
 import path from "path";
 import express from "express";
 import dotenv from "dotenv";
-import CORS from "cors";
 import cookieParser from "cookie-parser";
 
 import authRoutes from "./routes/authRoutes.js";
@@ -14,12 +13,7 @@ dotenv.config();
 
 const __dirname = path.resolve();
 
-app.use(
-  CORS({
-    origin: "http://localhost:5173",
-    credentials: true,
-  })
-);
+
 app.use(express.json());
 app.use(cookieParser());
 
