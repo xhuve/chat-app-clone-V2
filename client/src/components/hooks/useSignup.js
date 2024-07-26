@@ -16,7 +16,7 @@ const useSignup = () => {
     const { fullname, username, password, confirmPassword, gender } = data;
     axios
       .post(
-        currentUrl.origin + "api/auth/signup/",
+        currentUrl.origin + "/api/auth/signup/",
         { fullname, username, password, confirmPassword, gender },
         { withCredentials: true }
       )
