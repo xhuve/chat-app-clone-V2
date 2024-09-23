@@ -15,7 +15,6 @@ function SearchInput() {
     if (search.length < 3)
       return toast.error("Search term must be 3 chars long");
 
-    console.log("🚀 ~ handleSubmit ~ search:", search);
     const conversation = conversations.find((c) =>
       c.fullname.toLowerCase().includes(search.toLowerCase())
     );

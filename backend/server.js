@@ -13,7 +13,6 @@ dotenv.config();
 
 const __dirname = path.resolve();
 
-
 app.use(express.json());
 app.use(cookieParser());
 
