@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
+  "homepage": "https://melodious-valkyrie-14144d.netlify.app/",
   "scripts": {
     "server": "nodemon backend/server.js",
     "start": "node backend/server.js",
