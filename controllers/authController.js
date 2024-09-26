@@ -50,14 +50,14 @@ export const login = async (req, res) => {
     try {
         const {username, password} = req.body
         const user = await User.findOne({username})
+        console.log("🚀 ~ login ~ user:", user)
         const isPasswordCorrect = await bcrypt.compare(password, user?.password || "")
+        console.log("🚀 ~ login ~ isPasswordCorrect:", isPasswordCorrect)
 
         if (!user || !isPasswordCorrect)
             return res.status(400).send({error: "Invalid credentials"})
 
         generateToken(user._id, res)
-
-        console.log(req.cookies)
 
         res.status(200).send({
             _id: user._id,

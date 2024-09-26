@@ -24,6 +24,7 @@ const useLogin = () => {
         setAuthUser(res.data);
       })
       .catch((err) => {
+        console.log(err)
         toast.error(err.response.data.error);
       })
       .finally(() => {
