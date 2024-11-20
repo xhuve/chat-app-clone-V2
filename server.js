@@ -1,17 +1,15 @@
-import path from "path";
-import express from "express";
-import dotenv from "dotenv";
-import cookieParser from "cookie-parser";
+const path = require("path");
+const express = require("express");
+const dotenv = require("dotenv");
+const cookieParser = require("cookie-parser");
 
-import authRoutes from "./routes/authRoutes.js";
-import messageRoutes from "./routes/messageRoutes.js";
-import userRoutes from "./routes/userRoutes.js";
-import connectToMongoDb from "./database/connectToMongoDB.js";
-import { app, server } from "./socket/socket.js";
+const authRoutes = require("./routes/authRoutes.js");
+const messageRoutes = require("./routes/messageRoutes.js");
+const userRoutes = require("./routes/userRoutes.js");
+const connectToMongoDb = require("./database/connectToMongoDB.js");
+const { app, server } = require("./socket/socket.js");
 
 dotenv.config();
-
-const __dirname = path.resolve();
 
 app.use(express.json());
 app.use(cookieParser());

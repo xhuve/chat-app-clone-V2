@@ -3,7 +3,6 @@ import toast from "react-hot-toast";
 import { useAuthContext } from "../../context/AuthContext";
 import axiosClient from "../utils/axiosClient";
 
-
 const useLogin = () => {
   const [loading, setLoading] = useState();
   const { setAuthUser } = useAuthContext();
@@ -24,7 +23,7 @@ const useLogin = () => {
         setAuthUser(res.data);
       })
       .catch((err) => {
-        console.log(err)
+        console.log(err);
         toast.error(err.response.data.error);
       })
       .finally(() => {

@@ -1,7 +1,7 @@
-import jwt from "jsonwebtoken";
-import User from "../models/userModel.js";
+const jwt = require("jsonwebtoken");
+const User = require("../models/userModel.js");
 
-export const protectRoute = async (req, res, next) => {
+const protectRoute = async (req, res, next) => {
   try {
     const token = req.cookies.jwt;
     if (!token)
@@ -9,7 +9,9 @@ export const protectRoute = async (req, res, next) => {
 
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     if (!decoded)
-      return res.status(401).send({ error: "Unauthorized - Invalid token Can't Verify" });
+      return res
+        .status(401)
+        .send({ error: "Unauthorized - Invalid token Can't Verify" });
 
     const user = await User.findById(decoded.userId).select("-password");
 
@@ -23,3 +25,5 @@ export const protectRoute = async (req, res, next) => {
     res.status(500).send({ error: "Authorization error" + error });
   }
 };
+
+module.exports = { protectRoute };

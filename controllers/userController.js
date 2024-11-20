@@ -1,6 +1,6 @@
-import User from "../models/userModel.js";
+const User = require("../models/userModel.js");
 
-export const getSidebarUsers = async (req, res) => {
+const getSidebarUsers = async (req, res) => {
   try {
     const loggedUserId = req.user._id;
 
@@ -10,6 +10,8 @@ export const getSidebarUsers = async (req, res) => {
 
     res.status(200).json(allUsers);
   } catch (error) {
-    res.send(400).json({ error: "Internal server error" });
+    res.status(400).json({ error: "Internal server error" });
   }
 };
+
+module.exports = { getSidebarUsers };

@@ -20,7 +20,7 @@ function Home() {
   }, []);
 
   return (
-    <div className="flex bg-white w-full md:w-3/5 h-full md:h-4/5 min-w-fit rounded-lg bg-opacity-30 py-2 gap-2">
+    <div className="flex bg-white w-full md:w-4/5 h-[90vh] md:h-5/6 min-w-fit rounded-lg bg-opacity-30 py-2 gap-2">
       {!isMobile && (
         <>
           <Sidebar />

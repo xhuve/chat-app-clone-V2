@@ -1,9 +1,8 @@
-import Conversation from "../models/conversationSchema.js";
-import Message from "../models/messageModel.js";
-import { getRecieverSocketId } from "../socket/socket.js";
-import { io } from "../socket/socket.js";
+const Conversation = require("../models/conversationSchema.js");
+const Message = require("../models/messageModel.js");
+const { getRecieverSocketId, io } = require("../socket/socket.js");
 
-export const sendMessage = async (req, res) => {
+const sendMessage = async (req, res) => {
   try {
     const { message } = req.body;
     const recieverId = req.params.id;
@@ -27,7 +26,7 @@ export const sendMessage = async (req, res) => {
 
     if (newMessage) convo.messages.push(newMessage._id);
 
-    await Promise.all[(convo.save(), newMessage.save())];
+    await Promise.all([convo.save(), newMessage.save()]);
 
     const recieverSocketId = getRecieverSocketId(recieverId);
     if (recieverSocketId) {
@@ -41,7 +40,7 @@ export const sendMessage = async (req, res) => {
   }
 };
 
-export const getMessages = async (req, res) => {
+const getMessages = async (req, res) => {
   try {
     const userToChat = req.params.id;
     const senderId = req.user._id;
@@ -58,3 +57,5 @@ export const getMessages = async (req, res) => {
     res.status(500).send({ error: "Internal server error" + error });
   }
 };
+
+module.exports = { sendMessage, getMessages };
